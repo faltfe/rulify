@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  * }</pre>
  *
  * <p>In case one need to perform some sort of side effects like write to the database or do something else with the
- * altered data there is also the {@link SideEffect} class.
+ * altered data there is also the {@link Modifier} class.
  *
  * @param <T> the type of input on which the action is performed
  * @see Consumer

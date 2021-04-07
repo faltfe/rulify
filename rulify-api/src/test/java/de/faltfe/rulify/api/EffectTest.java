@@ -19,10 +19,10 @@ class EffectTest {
         @SuppressWarnings(value = {"rawtypes", "unchecked"})
         @Test
         void withSideEffect() {
-            SideEffect mockedSideEffect = mock(SideEffect.class);
-            when(mockedSideEffect.apply(any())).thenReturn(true);
-            assertNotNull(effect.manipulate(mockedSideEffect));
-            verify(mockedSideEffect).apply(any());
+            Modifier mockedModifier = mock(Modifier.class);
+            when(mockedModifier.apply(any())).thenReturn(true);
+            assertNotNull(effect.manipulate(mockedModifier));
+            verify(mockedModifier).apply(any());
         }
 
         @Test
@@ -40,16 +40,16 @@ class EffectTest {
             when(condition.test(any())).thenReturn(true);
             when(effect.condition()).thenReturn(condition);
 
-            SideEffect sideEffect = mock(SideEffect.class);
-            when(sideEffect.apply(any())).thenReturn(true);
-            when(effect.effect()).thenReturn(sideEffect);
+            Modifier modifier = mock(Modifier.class);
+            when(modifier.apply(any())).thenReturn(true);
+            when(effect.effect()).thenReturn(modifier);
 
             Action action = mock(Action.class);
             when(effect.action()).thenReturn(action);
 
             effect.execute();
             verify(effect, times(1)).action();
-            verify(effect, times(1)).manipulate(sideEffect);
+            verify(effect, times(1)).manipulate(modifier);
         }
 
         @SuppressWarnings(value = {"rawtypes", "unchecked"})
@@ -61,7 +61,7 @@ class EffectTest {
 
             effect.execute();
             verify(effect, never()).action();
-            verify(effect, never()).manipulate(any(SideEffect.class));
+            verify(effect, never()).manipulate(any(Modifier.class));
         }
 
         @Test
@@ -84,9 +84,9 @@ class EffectTest {
         void withNullAction() {
             Condition condition = mock(Condition.class);
             when(condition.test(any())).thenReturn(true);
-            SideEffect sideEffect = mock(SideEffect.class);
-            when(sideEffect.apply(any())).thenReturn(true);
-            when(effect.effect()).thenReturn(sideEffect);
+            Modifier modifier = mock(Modifier.class);
+            when(modifier.apply(any())).thenReturn(true);
+            when(effect.effect()).thenReturn(modifier);
             when(effect.action()).thenReturn(null);
             assertThrows(NullPointerException.class, effect::execute);
         }
