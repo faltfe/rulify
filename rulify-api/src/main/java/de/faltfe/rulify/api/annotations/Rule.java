@@ -10,5 +10,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Rule {
-    Class<? extends Executable>[] value();
+    Class<? extends Executable> value();
 }
