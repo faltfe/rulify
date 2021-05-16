@@ -15,6 +15,25 @@ class BaseRuleTest {
     private final Rule<?> rule = mock(Rule.class, Mockito.CALLS_REAL_METHODS);
 
     @Nested
+    class GetObject {
+        @Test
+        void getObject() {
+            rule.getObject();
+            verify(rule).data();
+        }
+
+        @SuppressWarnings(value = {"unchecked"})
+        @Test
+        void getObjectCached() {
+            BaseRule<Object> mockedRule = spy(BaseRule.class);
+            when(mockedRule.data()).thenReturn(new Object());
+            mockedRule.getObject();
+            mockedRule.getObject();
+            verify(mockedRule, times(1)).data();
+        }
+    }
+
+    @Nested
     class InCase {
 
         @SuppressWarnings(value = {"rawtypes", "unchecked"})
