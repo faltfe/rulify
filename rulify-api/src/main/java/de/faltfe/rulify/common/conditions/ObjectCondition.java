@@ -6,6 +6,8 @@ import java.util.Objects;
 
 public class ObjectCondition {
 
+    private ObjectCondition() {}
+
     public static <T> Condition<T> isNull() {
         return Objects::isNull;
     }

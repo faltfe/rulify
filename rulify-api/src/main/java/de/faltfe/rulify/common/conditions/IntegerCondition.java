@@ -4,7 +4,9 @@ import de.faltfe.rulify.api.Condition;
 
 public class IntegerCondition {
 
-    public static Condition<Integer> isEven = num -> num % 2 == 0;
+    private IntegerCondition() {}
 
-    public static Condition<Integer> isOdd = num -> num % 2 != 0;
+    public static final Condition<Integer> isEven = num -> num % 2 == 0;
+
+    public static final Condition<Integer> isOdd = num -> num % 2 != 0;
 }
