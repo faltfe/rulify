@@ -4,6 +4,8 @@ import de.faltfe.rulify.api.Modifier;
 
 public class MathEffect {
 
+    private MathEffect() {}
+
     public static Modifier<Double> square() {
         return power(2.0);
     }

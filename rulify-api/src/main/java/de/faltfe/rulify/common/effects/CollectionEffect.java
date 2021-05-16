@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 public class CollectionEffect {
 
+    private CollectionEffect() {}
+
     public static <T> Modifier<List<T>> removeNull() {
         return list -> list.stream().filter(Objects::nonNull).collect(Collectors.toList());
     }

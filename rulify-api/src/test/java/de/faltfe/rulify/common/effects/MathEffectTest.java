@@ -1,13 +1,11 @@
 package de.faltfe.rulify.common.effects;
 
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MathEffectTest {
 
@@ -18,11 +16,6 @@ class MathEffectTest {
         void withValues(double base) {
             assertEquals(Math.pow(base, 2), MathEffect.square().apply(base));
         }
-
-        @Test
-        void withNull() {
-            assertThrows(NullPointerException.class, () -> MathEffect.square().apply(null));
-        }
     }
 
     @Nested
@@ -31,11 +24,6 @@ class MathEffectTest {
         @ValueSource(doubles = {0, 1, 5, 10})
         void withValues(double base) {
             assertEquals(Math.pow(base, 3), MathEffect.cube().apply(base));
-        }
-
-        @Test
-        void withNull() {
-            assertThrows(NullPointerException.class, () -> MathEffect.cube().apply(null));
         }
     }
 
@@ -62,7 +50,7 @@ class MathEffectTest {
         @ParameterizedTest
         @CsvSource({"2, 9", "3, 27"})
         void withValues(double exponent, double root) {
-            assertEquals(Math.pow(root, 1.0/exponent), MathEffect.root(exponent).log().apply(root));
+            assertEquals(Math.pow(root, 1.0/exponent), MathEffect.root(exponent).apply(root));
         }
     }
 }

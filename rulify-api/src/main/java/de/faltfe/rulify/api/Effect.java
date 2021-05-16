@@ -1,7 +1,6 @@
 package de.faltfe.rulify.api;
 
 import de.faltfe.rulify.internal.BaseRule;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -30,7 +29,7 @@ public abstract class Effect<T> extends BaseRule<T> {
      *
      * @return the altered data
      */
-    protected abstract @NotNull Modifier<T> effect();
+    protected abstract Modifier<T> effect();
 
     /**
      * Whenever the method is called, the provided {@link Condition} is evaluated.
@@ -49,7 +48,7 @@ public abstract class Effect<T> extends BaseRule<T> {
      * @param modifier any valid {@link Modifier}
      * @return the manipulated data which is never {@code null}.
      */
-    protected @NotNull T manipulate(@NotNull Modifier<T> modifier) {
+    protected T manipulate(Modifier<T> modifier) {
         Objects.requireNonNull(modifier);
         return modifier.apply(getObject());
     }

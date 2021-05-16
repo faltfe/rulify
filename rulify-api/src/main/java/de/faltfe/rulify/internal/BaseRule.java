@@ -3,7 +3,6 @@ package de.faltfe.rulify.internal;
 import de.faltfe.rulify.api.Action;
 import de.faltfe.rulify.api.Condition;
 import de.faltfe.rulify.api.Executable;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
@@ -22,7 +21,7 @@ public abstract class BaseRule<T> implements Executable {
      *
      * @return original pure data that is never {@code null}
      */
-    public abstract @NotNull T data();
+    public abstract T data();
 
     /**
      * Provide any {@link Condition} that is checked against the provided {@link #data()}.
@@ -43,7 +42,7 @@ public abstract class BaseRule<T> implements Executable {
      * @return a reference to the {@link Condition } implementation or the implementation itself
      * @see #inCase(Condition)
      */
-    public abstract @NotNull Condition<T> condition();
+    public abstract Condition<T> condition();
 
     /**
      * Provide any {@link Action} that performs logic against the provided {@link #data()}.
@@ -55,7 +54,7 @@ public abstract class BaseRule<T> implements Executable {
      * @return a reference to the {@link Action} implementation or the implementation itself
      * @see #thenRun(Action)
      */
-    public abstract @NotNull Action<T> action();
+    public abstract Action<T> action();
 
     /**
      * Get the data one which all operations are performed.
@@ -80,7 +79,7 @@ public abstract class BaseRule<T> implements Executable {
      * @param condition any {@link Condition} run against the provided {@link #data()}
      * @return {@code true} if the condition is fulfilled.
      */
-    protected boolean inCase(@NotNull Condition<T> condition) {
+    protected boolean inCase(Condition<T> condition) {
         Objects.requireNonNull(condition);
         return condition.test(getObject());
     }
@@ -93,7 +92,7 @@ public abstract class BaseRule<T> implements Executable {
      * @param action any valid {@link Action} run on the provided data.
      * @see #thenRun(Action, Object)
      */
-    protected void thenRun(@NotNull Action<T> action) {
+    protected void thenRun(Action<T> action) {
         this.thenRun(action, getObject());
     }
 
@@ -106,7 +105,7 @@ public abstract class BaseRule<T> implements Executable {
      * @param data   provide the value for the action
      * @see #thenRun(Action)
      */
-    protected void thenRun(@NotNull Action<T> action, T data) {
+    protected void thenRun(Action<T> action, T data) {
         Objects.requireNonNull(action);
         action.accept(data);
     }

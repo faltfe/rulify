@@ -1,8 +1,5 @@
 package de.faltfe.rulify.api;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.function.BiConsumer;
 import java.util.function.UnaryOperator;
 
@@ -26,13 +23,7 @@ import java.util.function.UnaryOperator;
 @FunctionalInterface
 public interface Modifier<T> extends UnaryOperator<T> {
 
-    Logger log = LoggerFactory.getLogger(Modifier.class);
-
-    default Modifier<T> log() {
-        return log((in, out) -> log.debug("In: {}, Out: {}", in, out));
-    }
-
-    default Modifier<T> log(BiConsumer<T, T> consumer) {
+    default Modifier<T> tap(BiConsumer<T, T> consumer) {
         return v -> {
             T t = apply(v);
             consumer.accept(v, t);
