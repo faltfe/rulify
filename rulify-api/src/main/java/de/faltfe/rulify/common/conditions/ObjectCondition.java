@@ -6,11 +6,11 @@ import java.util.Objects;
 
 public class ObjectCondition {
 
-    public <T> Condition<T> isNull() {
+    public static <T> Condition<T> isNull() {
         return Objects::isNull;
     }
 
-    public <T> Condition<T> isNotNull() {
+    public static <T> Condition<T> isNotNull() {
         return Objects::nonNull;
     }
 }

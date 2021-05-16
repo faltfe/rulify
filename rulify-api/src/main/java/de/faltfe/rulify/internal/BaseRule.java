@@ -37,6 +37,7 @@ public abstract class BaseRule<T> implements Executable {
      * <pre>{@code
      * protected Condition<Integer> condition() {
      *   return i -> i % 2 == 0;
+     * }
      * }</pre>
      *
      * @return a reference to the {@link Condition } implementation or the implementation itself
