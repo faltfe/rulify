@@ -11,4 +11,12 @@
 
     <artifactId>rulify-example-se</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>de.faltfe</groupId>
+            <artifactId>rulify-runner</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>

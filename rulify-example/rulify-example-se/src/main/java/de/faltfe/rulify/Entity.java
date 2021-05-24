@@ -1,7 +1,11 @@
 package de.faltfe.rulify;
 
+import de.faltfe.rulify.api.annotations.Rule;
+import de.faltfe.rulify.rules.CustomRule;
+
 import java.util.Objects;
 
+@Rule(CustomRule.class)
 public class Entity {
     private String name;
     private final boolean isActive;
