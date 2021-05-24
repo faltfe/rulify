@@ -1,37 +1,28 @@
-package de.faltfe.rulify.scanner;
+package de.faltfe.rulify.runner;
 
 import de.faltfe.rulify.api.annotations.Rule;
-import lombok.Data;
+import de.faltfe.rulify.scanner.RuleScanner;
 import lombok.extern.slf4j.Slf4j;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.Set;
 
 @Slf4j
-@Data
-public class RuleRunner {
+public class RuleRunner extends AnnotationRunner {
 
-    private final String path;
-    private Set<Class<?>> classes;
-
-    public Set<Class<?>> findClasses() {
-        if (classes == null) {
-            Reflections reflections = new Reflections(path);
-            this.classes = reflections.getTypesAnnotatedWith(Rule.class);
-        }
-        return classes;
+    public RuleRunner(String packagePath) {
+        super(new RuleScanner(packagePath));
     }
 
-    public void executeRules() {
-        findClasses().forEach(clazz -> {
+    public void run() {
+        executeRules(scannedClasses -> scannedClasses.forEach(clazz -> {
             Rule rule = clazz.getAnnotation(Rule.class);
             try {
-                log.debug("Running rule {} on class {}", rule.getClass().getSimpleName(), clazz.getSimpleName());
+                log.debug("Running rule {} on class {}", rule.value().getSimpleName(), clazz.getSimpleName());
                 rule.value().getDeclaredConstructor().newInstance().execute();
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                 log.error("Error while executing rule {}", rule.getClass().getSimpleName(), e);
             }
-        });
+        }));
     }
+
 }
