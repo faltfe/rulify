@@ -12,8 +12,6 @@ public abstract class AnnotationRunner {
     private final AnnotationScanner annotationScanner;
 
     public void executeRules(Consumer<Set<Class<?>>> classesConsumer) {
-       classesConsumer.accept(annotationScanner.findClasses());
+       classesConsumer.accept(annotationScanner.scanClasses());
     }
-
-    public abstract void run();
 }

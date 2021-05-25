@@ -14,4 +14,6 @@ public class RuleScanner extends AnnotationScanner{
     public Class<? extends Annotation> getAnnotationFilter() {
         return Rule.class;
     }
+
+
 }
