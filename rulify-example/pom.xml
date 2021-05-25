@@ -13,6 +13,7 @@
 
     <modules>
         <module>rulify-example-cdi</module>
+        <module>rulify-example-se</module>
     </modules>
 
     <dependencies>
