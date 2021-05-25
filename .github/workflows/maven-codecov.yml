@@ -19,12 +19,12 @@ jobs:
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-m2  
+        restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: mvn -B -U verify
     - name: Upload to Codecov
       uses: codecov/codecov-action@v1.5.0
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./rulify-api/target/site/jacoco/jacoco.xml
+        file: ./coverage/target/site/jacoco-aggregate/jacoco.xml
         flags: unittests
