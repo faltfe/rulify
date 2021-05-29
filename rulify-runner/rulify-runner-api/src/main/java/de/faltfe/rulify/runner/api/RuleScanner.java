@@ -2,17 +2,10 @@ package de.faltfe.rulify.runner.api;
 
 import de.faltfe.rulify.api.annotations.Rule;
 
-import java.lang.annotation.Annotation;
-
-public class RuleScanner extends AnnotationScanner{
+public class RuleScanner extends GenericScanner<Rule>{
 
     public RuleScanner(String path) {
         super(path);
-    }
-
-    @Override
-    public Class<? extends Annotation> getAnnotationFilter() {
-        return Rule.class;
     }
 
 
