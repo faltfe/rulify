@@ -1,4 +1,4 @@
-package de.faltfe.rulify.scanner;
+package de.faltfe.rulify.runner.api;
 
 import de.faltfe.rulify.api.annotations.Rule;
 

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>rulify</artifactId>
-        <groupId>de.faltfe</groupId>
+        <groupId>de.faltfe.rulify</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,16 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>rulify-runner-api</module>
         <module>rulify-runner-se</module>
         <module>rulify-runner-jakarta</module>
     </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>de.faltfe</groupId>
-            <artifactId>rulify-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
 </project>

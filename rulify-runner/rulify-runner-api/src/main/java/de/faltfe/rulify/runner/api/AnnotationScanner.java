@@ -1,7 +1,5 @@
-package de.faltfe.rulify.scanner;
+package de.faltfe.rulify.runner.api;
 
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
 import org.reflections.Reflections;
 import org.reflections.scanners.SubTypesScanner;
 import org.reflections.scanners.TypeAnnotationsScanner;
@@ -10,11 +8,14 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 import java.util.concurrent.Executors;
 
-@RequiredArgsConstructor(access = AccessLevel.PROTECTED)
 public abstract class AnnotationScanner {
 
     private Set<Class<?>> classes;
     private final String path;
+
+    protected AnnotationScanner(String path) {
+        this.path = path;
+    }
 
     public abstract Class<? extends Annotation> getAnnotationFilter();
 

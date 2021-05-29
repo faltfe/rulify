@@ -1,14 +1,17 @@
 package de.faltfe.rulify.runner;
 
-import de.faltfe.rulify.api.RulifyRunner;
+import de.faltfe.rulify.runner.api.RulifyRunner;
 import de.faltfe.rulify.api.annotations.Rule;
-import de.faltfe.rulify.scanner.RuleScanner;
-import lombok.extern.slf4j.Slf4j;
+import de.faltfe.rulify.runner.api.AnnotationRunner;
+import de.faltfe.rulify.runner.api.RuleScanner;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationTargetException;
 
-@Slf4j
 public class RuleRunner extends AnnotationRunner implements RulifyRunner {
+
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
     public RuleRunner(String packagePath) {
         super(new RuleScanner(packagePath));

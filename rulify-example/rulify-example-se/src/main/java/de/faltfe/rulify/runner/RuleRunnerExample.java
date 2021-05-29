@@ -1,6 +1,6 @@
 package de.faltfe.rulify.runner;
 
-import de.faltfe.rulify.api.RulifyRunner;
+import de.faltfe.rulify.runner.api.RulifyRunner;
 
 public class RuleRunnerExample {
 

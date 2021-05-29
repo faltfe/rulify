@@ -1,4 +1,4 @@
-package de.faltfe.rulify.api;
+package de.faltfe.rulify.runner.api;
 
 public interface RulifyRunner {
     void run();

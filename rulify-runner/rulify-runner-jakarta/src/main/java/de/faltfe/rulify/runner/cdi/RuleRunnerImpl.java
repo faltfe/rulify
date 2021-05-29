@@ -1,26 +1,32 @@
 package de.faltfe.rulify.runner.cdi;
 
-import de.faltfe.rulify.runner.RuleRunner;
-import jakarta.enterprise.inject.Produces;
-import jakarta.enterprise.inject.spi.Annotated;
-import jakarta.enterprise.inject.spi.InjectionPoint;
+import de.faltfe.rulify.api.Executable;
+import de.faltfe.rulify.api.annotations.Rule;
+import de.faltfe.rulify.runner.api.RuleScanner;
+import de.faltfe.rulify.runner.api.RulifyRunner;
+import jakarta.enterprise.inject.spi.CDI;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Singleton
-public class RuleRunnerImpl {
+public class RuleRunnerImpl implements RulifyRunner {
 
-    private final org.slf4j.Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger log = LoggerFactory.getLogger(getClass());
 
-    @Produces
-    public RuleRunner getRuleRunner(InjectionPoint injectionPoint) {
-        Annotated annotated = injectionPoint.getAnnotated();
-        String path = "";
-        if (annotated.isAnnotationPresent(Rulify.class)) {
-            Rulify rulifyAnnotation = annotated.getAnnotation(Rulify.class);
-            path = rulifyAnnotation.path();
-        }
-        logger.debug("Scanned path is set to {}", path);
-        return new RuleRunner(path);
+    @Inject
+    @RulifyConfig(path = "de.faltfe.rulify")
+    private RuleScanner ruleScanner;
+
+    @Override
+    public void run() {
+        ruleScanner.scanClasses().forEach(clazz -> {
+            Rule rule = clazz.getAnnotation(Rule.class);
+            log.debug("Running rule {} on class {}", rule.value().getSimpleName(), clazz.getSimpleName());
+            Executable executable = CDI.current().select(rule.value()).get();
+            executable.execute();
+            log.debug("Finished rule for {}", clazz.getSimpleName());
+        });
     }
 }
