@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>de.faltfe</groupId>
-            <artifactId>rulify-runner</artifactId>
+            <artifactId>rulify-runner-se</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

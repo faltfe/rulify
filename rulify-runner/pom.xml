@@ -10,27 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>rulify-runner</artifactId>
+    <packaging>pom</packaging>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
+    <modules>
+        <module>rulify-runner-se</module>
+        <module>rulify-runner-jakarta</module>
+    </modules>
 
     <dependencies>
         <dependency>
             <groupId>de.faltfe</groupId>
             <artifactId>rulify-api</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.reflections</groupId>
-            <artifactId>reflections</artifactId>
-            <version>0.9.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

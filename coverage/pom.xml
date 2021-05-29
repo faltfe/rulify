@@ -17,11 +17,6 @@
             <artifactId>rulify-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-        <dependency>
-            <groupId>de.faltfe</groupId>
-            <artifactId>rulify-runner</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
 
     <build>
