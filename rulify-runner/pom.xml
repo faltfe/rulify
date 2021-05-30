@@ -16,6 +16,7 @@
         <module>rulify-runner-api</module>
         <module>rulify-runner-se</module>
         <module>rulify-runner-jakarta</module>
+        <module>rulify-runner-javaee8</module>
     </modules>
 
     <dependencies>

@@ -16,8 +16,6 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
@@ -25,6 +23,27 @@
         <lombok.depencency.version>1.18.20</lombok.depencency.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>jdk-11</id>
+            <activation>
+                <jdk>11</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.release>11</maven.compiler.release>
+            </properties>
+        </profile>
+            <profile>
+                <id>jdk-1.8</id>
+                <activation>
+                    <jdk>1.8</jdk>
+                </activation>
+                <properties>
+                    <maven.compiler.source>1.8</maven.compiler.source>
+                    <maven.compiler.target>1.8</maven.compiler.target>
+                </properties>
+            </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>
