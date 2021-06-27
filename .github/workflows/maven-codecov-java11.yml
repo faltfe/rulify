@@ -1,4 +1,4 @@
-name: Java CI with Maven and Codegov
+name: Java 11 - Build, run tests and create coverage
 
 on: [push, pull_request ]
 
@@ -27,4 +27,4 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
         file: ./coverage/target/site/jacoco-aggregate/jacoco.xml
-        flags: unittests
+        flags: unittests-java11
