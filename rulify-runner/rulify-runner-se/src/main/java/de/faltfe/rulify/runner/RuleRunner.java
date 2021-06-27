@@ -16,6 +16,7 @@ public class RuleRunner extends AnnotationRunner implements RulifyRunner {
     public RuleRunner(String packagePath) {
         super(new RuleScanner(packagePath));
     }
+
     @Override
     public void run() {
         executeRules(scannedClasses -> scannedClasses.forEach(clazz -> {

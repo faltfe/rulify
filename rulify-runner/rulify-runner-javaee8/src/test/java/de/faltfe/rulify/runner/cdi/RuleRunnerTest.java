@@ -14,10 +14,11 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @EnabledOnJre(JRE.JAVA_8)
 @EnableAutoWeld
-@AddPackages({RuleRunnerImpl.class, CustomRule.class})
+@AddPackages({RuleRunnerProducer.class, CustomRule.class})
 class RuleRunnerTest {
 
     @Inject
+    @RulifyConfig(path = "de.faltde.rulify")
     private RulifyRunner runner;
 
     @Test
