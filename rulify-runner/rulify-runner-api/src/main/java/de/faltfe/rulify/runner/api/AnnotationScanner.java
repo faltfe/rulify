@@ -1,8 +1,8 @@
 package de.faltfe.rulify.runner.api;
 
-import org.reflections.Reflections;
-import org.reflections.scanners.SubTypesScanner;
-import org.reflections.scanners.TypeAnnotationsScanner;
+import org.reflections8.Reflections;
+import org.reflections8.scanners.SubTypesScanner;
+import org.reflections8.scanners.TypeAnnotationsScanner;
 
 import java.lang.annotation.Annotation;
 import java.util.Set;
