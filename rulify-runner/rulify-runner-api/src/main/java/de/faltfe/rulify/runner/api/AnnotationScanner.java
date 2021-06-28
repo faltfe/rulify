@@ -8,7 +8,7 @@ import java.lang.annotation.Annotation;
 import java.util.Set;
 import java.util.concurrent.Executors;
 
-public abstract class AnnotationScanner {
+abstract class AnnotationScanner {
 
     private Set<Class<?>> classes;
     private final String path;
