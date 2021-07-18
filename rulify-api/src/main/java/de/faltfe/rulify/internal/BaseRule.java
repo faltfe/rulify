@@ -8,7 +8,7 @@ import java.util.Objects;
 
 public abstract class BaseRule<T> implements Executable {
 
-    private T object;
+    private T data;
 
     /**
      * Provide data for all other operations.
@@ -64,11 +64,11 @@ public abstract class BaseRule<T> implements Executable {
      *
      * @return the passed {@link #data()}
      */
-    protected T getObject() {
-        if (object == null) {
-            this.object = data();
+    protected T getData() {
+        if (data == null) {
+            this.data = data();
         }
-        return object;
+        return data;
     }
 
     /**
@@ -81,7 +81,7 @@ public abstract class BaseRule<T> implements Executable {
      */
     protected boolean inCase(Condition<T> condition) {
         Objects.requireNonNull(condition);
-        return condition.test(getObject());
+        return condition.test(getData());
     }
 
     /**
@@ -93,7 +93,7 @@ public abstract class BaseRule<T> implements Executable {
      * @see #thenRun(Action, Object)
      */
     protected void thenRun(Action<T> action) {
-        this.thenRun(action, getObject());
+        this.thenRun(action, getData());
     }
 
     /**

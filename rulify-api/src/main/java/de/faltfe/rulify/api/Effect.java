@@ -50,6 +50,6 @@ public abstract class Effect<T> extends BaseRule<T> {
      */
     protected T manipulate(Modifier<T> modifier) {
         Objects.requireNonNull(modifier);
-        return modifier.apply(getObject());
+        return modifier.apply(getData());
     }
 }

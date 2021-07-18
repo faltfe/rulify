@@ -18,7 +18,7 @@ class BaseRuleTest {
     class GetObject {
         @Test
         void getObject() {
-            rule.getObject();
+            rule.getData();
             verify(rule).data();
         }
 
@@ -27,8 +27,8 @@ class BaseRuleTest {
         void getObjectCached() {
             BaseRule<Object> mockedRule = spy(BaseRule.class);
             when(mockedRule.data()).thenReturn(new Object());
-            mockedRule.getObject();
-            mockedRule.getObject();
+            mockedRule.getData();
+            mockedRule.getData();
             verify(mockedRule, times(1)).data();
         }
     }
