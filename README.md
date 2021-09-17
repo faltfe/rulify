@@ -1,4 +1,6 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/faltfe/rulify/branch/develop/graph/badge.svg?token=8KSNJFNNFU)](https://codecov.io/gh/faltfe/rulify)
+
+[![Java 8 - Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java8.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java8.yml) [![Java 11 - Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java11.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java11.yml) 
 
 # rulify
 
