@@ -15,7 +15,6 @@
             <roles>
                 <role>Project Lead</role>
             </roles>
-            <email>ffaltin91@gmail.com</email>
         </developer>
     </developers>
 
@@ -23,6 +22,14 @@
         <system>Github</system>
         <url>https://github.com/faltfe/rulify/issues</url>
     </issueManagement>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/faltfe/rulify</url>
+        </repository>
+    </distributionManagement>
 
     <modules>
         <module>rulify-api</module>
