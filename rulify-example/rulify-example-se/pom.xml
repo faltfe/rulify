@@ -5,7 +5,7 @@
     <parent>
         <artifactId>rulify-example</artifactId>
         <groupId>de.faltfe.rulify</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,7 +15,7 @@
         <dependency>
             <groupId>de.faltfe.rulify</groupId>
             <artifactId>rulify-runner-se</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
