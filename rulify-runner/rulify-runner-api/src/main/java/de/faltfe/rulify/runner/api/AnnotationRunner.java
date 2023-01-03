@@ -9,6 +9,10 @@ public abstract class AnnotationRunner {
 
     protected AnnotationRunner(AnnotationScanner annotationScanner) {this.annotationScanner = annotationScanner;}
 
+    /**
+     *
+     * @param classesConsumer
+     */
     public void executeRules(Consumer<Set<Class<?>>> classesConsumer) {
         classesConsumer.accept(annotationScanner.scanClasses());
     }
