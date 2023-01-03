@@ -13,15 +13,15 @@
 
     <dependencies>
         <dependency>
+            <groupId>de.faltfe.rulify</groupId>
+            <artifactId>rulify-runner-api</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>8.0.1</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.faltfe.rulify</groupId>
-            <artifactId>rulify-runner-api</artifactId>
-            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.jboss.weld</groupId>
@@ -32,7 +32,6 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

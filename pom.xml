@@ -43,29 +43,30 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
-        <lombok.depencency.version>1.18.20</lombok.depencency.version>
+        <lombok.dependency.version>1.18.20</lombok.dependency.version>
+        <slf4j.version>2.0.5</slf4j.version>
     </properties>
 
     <profiles>
         <profile>
-            <id>jdk-11</id>
+            <id>jdk-gte-11</id>
             <activation>
-                <jdk>11</jdk>
+                <jdk>[11,)</jdk>
             </activation>
             <properties>
                 <maven.compiler.release>11</maven.compiler.release>
             </properties>
         </profile>
-            <profile>
-                <id>jdk-1.8</id>
-                <activation>
-                    <jdk>1.8</jdk>
-                </activation>
-                <properties>
-                    <maven.compiler.source>1.8</maven.compiler.source>
-                    <maven.compiler.target>1.8</maven.compiler.target>
-                </properties>
-            </profile>
+        <profile>
+            <id>jdk-1.8</id>
+            <activation>
+                <jdk>1.8</jdk>
+            </activation>
+            <properties>
+                <maven.compiler.source>1.8</maven.compiler.source>
+                <maven.compiler.target>1.8</maven.compiler.target>
+            </properties>
+        </profile>
     </profiles>
 
     <dependencyManagement>
@@ -73,13 +74,28 @@
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>${lombok.depencency.version}</version>
+                <version>${lombok.dependency.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.7.30</version>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>4.11.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>5.9.1</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -95,7 +111,7 @@
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
-                            <version>${lombok.depencency.version}</version>
+                            <version>${lombok.dependency.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
