@@ -1,6 +1,6 @@
 package de.faltfe.rulify;
 
-import de.faltfe.rulify.api.annotations.Rule;
+import de.faltfe.rulify.runner.api.annotations.Rule;
 import de.faltfe.rulify.rules.CustomRule;
 
 import java.util.Objects;

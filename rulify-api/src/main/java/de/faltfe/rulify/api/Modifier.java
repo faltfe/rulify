@@ -4,7 +4,7 @@ import java.util.function.BiConsumer;
 import java.util.function.UnaryOperator;
 
 /**
- * Represents a decoupled self contained piece of logic which may alter the data against any object.
+ * Represents a decoupled self-contained piece of logic which may alter the data against any object.
  * <p>
  * A modifier is a concept from functional programming paradigm. In comparison to {@link Action} a
  * {@link Modifier} will return the altered data. This allows chainable operation with the <strong>altered</strong>

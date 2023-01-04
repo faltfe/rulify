@@ -4,12 +4,13 @@ import de.faltfe.rulify.api.Executable;
 import de.faltfe.rulify.runner.api.annotations.Rule;
 import de.faltfe.rulify.impl.RuleScanner;
 import de.faltfe.rulify.runner.api.RulifyRunner;
-import jakarta.enterprise.inject.Produces;
-import jakarta.enterprise.inject.spi.Annotated;
-import jakarta.enterprise.inject.spi.CDI;
-import jakarta.enterprise.inject.spi.InjectionPoint;
-import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
+
+import javax.enterprise.inject.Produces;
+import javax.enterprise.inject.spi.Annotated;
+import javax.enterprise.inject.spi.CDI;
+import javax.enterprise.inject.spi.InjectionPoint;
+import javax.inject.Singleton;
 
 @Singleton
 @Slf4j
@@ -42,5 +43,4 @@ public class RuleRunnerProducer {
             ruleScanner = new RuleScanner("");
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package de.faltfe.rulify.api;
 
+@FunctionalInterface
 public interface Executable {
 
     /**
