@@ -14,12 +14,17 @@
 
     <modules>
         <module>rulify-runner-api</module>
+        <module>rulify-runner-impl</module>
         <module>rulify-runner-se</module>
         <module>rulify-runner-jakarta</module>
-        <module>rulify-runner-javaee8</module>
+        <module>rulify-runner-javax</module>
     </modules>
 
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
