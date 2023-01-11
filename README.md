@@ -1,6 +1,5 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/faltfe/rulify/branch/develop/graph/badge.svg?token=8KSNJFNNFU)](https://codecov.io/gh/faltfe/rulify)
-
-[![Java 8 - Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java8.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java8.yml) [![Java 11 - Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java11.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/maven-codecov-java11.yml) 
+[![Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/build-test-coverage.yml)
 
 # rulify
 
@@ -25,7 +24,7 @@ replace it.
 _rulify_ offers two classes which can be used as a start for the implementation
 of a rule.
 
-![rulify-api-uml](./asserts/rulify-api-uml.png)
+![rulify-api-uml](assets/rulify-api-uml.png)
 
 1. A `Rule` will evaluate a `Condition` and perform the provided `Action`
 2. An `Effect` will evaluate a `Condition`, modify the data with the given
@@ -85,7 +84,7 @@ Executable rule=new CatRule();
 rule.execute();
 ```
 
-![rulify-rule-effect-flow](./asserts/rulify-rule-effect-flow.drawio.png)
+![rulify-rule-effect-flow](assets/rulify-rule-effect-flow.drawio.png)
 
 ## What are the benefits of _rulify_?
 
@@ -133,7 +132,7 @@ marker interface that extends `Executable`. The next step is to configure the
 runner. The `rulify runner` needs to know which packages should be scanned. Each
 runner instance can scan exactly one package recursively.
 
-![rulify-runner](./asserts/rulify-runner-uml.drawio.png)
+![rulify-runner](assets/rulify-runner-uml.drawio.png)
 
 For Java SE projects this will look like
 
