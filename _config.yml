@@ -16,7 +16,9 @@ defaults:
       layout: "default"
 
 aux_links:
-  "Issues":
+  "Repository":
+    - "https://github.com/faltfe/rulify"
+  "Open an issues":
     - "https://github.com/faltfe/rulify/issues"
 
 aux_links_new_tab: true
