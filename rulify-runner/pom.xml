@@ -18,6 +18,7 @@
         <module>rulify-runner-se</module>
         <module>rulify-runner-jakarta</module>
         <module>rulify-runner-javax</module>
+        <module>rulify-spring-boot-starter</module>
     </modules>
 
     <dependencies>
