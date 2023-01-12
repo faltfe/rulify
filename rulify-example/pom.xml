@@ -13,6 +13,9 @@
 
     <modules>
         <module>rulify-example-se</module>
+        <module>rulify-example-javax</module>
+        <module>rulify-example-jakarta</module>
+        <module>rulify-example-spring-boot</module>
     </modules>
 
     <properties>
