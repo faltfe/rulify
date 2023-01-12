@@ -46,6 +46,11 @@
             <artifactId>rulify-runner-javax</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>de.faltfe.rulify</groupId>
+            <artifactId>rulify-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
