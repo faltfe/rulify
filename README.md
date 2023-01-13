@@ -25,6 +25,16 @@ nor to replace it. ‼**
 
 ## How _rulify_ works? 🔨
 
+When working with Maven import the dependency
+
+```xml
+<dependency>
+    <groupId>de.faltfe.rulify</groupId>
+    <artifactId>rulify-api</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
 _rulify_ offers two classes which can be used as a start for the implementation
 of a rule.
 
@@ -36,6 +46,16 @@ of a rule.
 
 A `Rule` or `Effect` always works with data provided by your own implementation.
 This data must be managed by a single object, which is ideally a POJO.
+
+---
+
+<p style="text-align: center;">
+    <a href="https://faltfe.github.io/rulify/" target="_blank">
+        🛑 <strong>For more information read the detail documentation.</strong> 🛑
+    </a>
+</p>
+
+---
 
 ## How to get started with _rulify_? 🎆
 
@@ -124,44 +144,118 @@ mechanism for If-Then conditions.
 
 # Rulify runner 🏃‍♂️🏃‍♀️
 
-> **Warning: The rulify runner was rewritten. The documentation is outdated.**
-
-A second library provides mechanism to scan a project for rules and execute the
-connected `Rule` or `Effect`. At the moment
+The _rulify_ runner is an extension build on top of the _rulify_ API. There 
+are different implementations based on the target environment:
 
 - Java SE
-- Java EE 8
-- Jakarta (Java 11)
-
-are supported. Spring Boot is not supported yet, because it uses an own
-annotation scanner.
+- Java EE (`java.javax`)
+- Jakarta (`java.jakarta`)
+- Spring Boot
 
 ## How to start with rulify runner?
 
 _rulify runner_ provides an API with the interface `RulifyRunner` that has the
 method `run()`. Each implementation for a specific platform should implement
-this method.
+this method. Depending on the target system, select the right dependency.
 
-The first step is to annotate any class with `@Rule(MyRule.class)` and provide a
-marker interface that extends `Executable`. The next step is to configure the
-runner. The `rulify runner` needs to know which packages should be scanned. Each
-runner instance can scan exactly one package recursively.
+![rulify-runner](assets/package-view.drawio.png)
 
-![rulify-runner](assets/rulify-runner-uml.drawio.png)
+Independent on selected implementation there are the following steps required:
 
-For Java SE projects this will look like
+1. Create a custom `Rule` or `Effect` and annotate the class the rule or 
+   effect is working on with `@Rule(MyRule.class)`.
 
-```java
-RulifyRunner runner = new RuleRunner("de.faltfe.rulify");
-runner.run();
+   An implementation of the `Executable` interface would also be valid if a 
+   rule or effect is not required.
+2. Get a valid reference to `RulifyRunner` and execute the `run()` method.
+
+### Example implementation for Java SE project
+
+Import the required dependency. There is no need to import `rulify-api` 
+because it is a transitiv dependency.
+
+```xml
+<dependency>
+    <groupId>de.faltfe.rulify</groupId>
+    <artifactId>rulify-runner-se</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
-and for Java projects that uses dependency injection
+Sample implementation
 
 ```java
-@Inject @RulifyConfig(path = "de.faltde.rulify") private RulifyRunner runner;
+class RuleScanner() {
+    public static void main(String[] args) {
+        RulifyRunner runner = new RuleRunner("de.faltfe.rulify");
+        runner.run();
+    }
+}
+```
 
-public void run(){
-    runner.run();
+### Example for javax and jakarta
+
+Import the required dependency. There is no need to import `rulify-api`
+because it is a transitiv dependency.
+
+```xml
+<dependency>
+    <groupId>de.faltfe.rulify</groupId>
+    <artifactId>rulify-runner-javax</artifactId>
+    <!-- <artifactId>rulify-runner-jakarta</artifactId> -->
+    <version>1.0.0</version>
+</dependency>
+```
+
+It is recommended that a `RulifyRunner` instance lives as long as the 
+application is running to prevent scanning multiple time.
+
+```java
+@Singleton
+@Startup
+class RuleScanner() {
+    @Inject
+    @RulifyConfig(path = "de.faltde.rulify")
+    private RulifyRunner runner;
+    
+    @PostContruct
+    public void run(){
+        runner.run();
+    }
+}
+```
+
+### Example for Sprint Boot projects
+
+Import the required dependency. There is no need to import `rulify-api`
+because it is a transitiv dependency.
+
+```xml
+<dependency>
+    <groupId>de.faltfe.rulify</groupId>
+    <artifactId>rulify-spring-boot-starter</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+The configuration of the scanned packages is done inside the 
+`application.properties` by setting `de.faltfe.rulify.path=de.faltfe.rulify`.
+
+```java
+
+@SpringBootApplication
+public class Main implements CommandLineRunner {
+
+    @Autowired
+    private RulifyRunner runner;
+
+    public static void main(String[] args) {
+        SpringApplication.run(Main.class, args);
+    }
+
+    @Override
+    public void run(String... args) {
+        runner.run();
+    }
 }
 ```
