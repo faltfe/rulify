@@ -18,7 +18,7 @@ public class RuleScanner extends GenericScanner<Rule> {
 
     @Override
     public Set<Class<?>> scan() {
-        if (this.getFoundClasses() != null) {
+        if (this.getFoundClasses() != null && !this.getFoundClasses().isEmpty()) {
             return this.getFoundClasses();
         }
 
