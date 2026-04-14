@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=de.faltfe.rulify.config.SpringRulifyAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.faltfe.rulify.runner.config.SpringRulifyAutoConfiguration
