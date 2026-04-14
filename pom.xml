@@ -49,7 +49,7 @@
         <surefire.plugin.version>3.0.0-M5</surefire.plugin.version>
         <jacoco.plugin.version>0.8.7</jacoco.plugin.version>
         <lombok.dependency.version>1.18.20</lombok.dependency.version>
-        <slf4j.version>2.0.5</slf4j.version>
+        <slf4j.version>2.0.17</slf4j.version>
     </properties>
 
     <profiles>
