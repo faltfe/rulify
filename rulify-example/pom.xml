@@ -3,8 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <groupId>io.github.faltfe</groupId>
         <artifactId>rulify</artifactId>
-        <groupId>de.faltfe.rulify</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -12,7 +12,7 @@
     <artifactId>rulify-example</artifactId>
 
     <modules>
-        <module>rulify-example-se</module>
+        <module>rulify-example-standalone</module>
         <module>rulify-example-javax</module>
         <module>rulify-example-jakarta</module>
         <module>rulify-example-spring-boot</module>
