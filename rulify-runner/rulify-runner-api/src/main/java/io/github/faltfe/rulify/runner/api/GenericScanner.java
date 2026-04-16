@@ -1,23 +1,23 @@
 package io.github.faltfe.rulify.runner.api;
 
-import lombok.Getter;
-import lombok.NonNull;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * A GenericScanner is meant to be an abstraction for a possible implementation to scan for a certain {@link Annotation}
  * in the project.
  * <p>
- * The abstraction layer does not provide any logic nor implementation how to scan for annotations in the project. The
- * purpose of this class is to give an entry point for predefined or custom implementations. Some concepts are
+ * The abstraction layer does not provide any logic nor does it provide implementation on how to scan for annotations in
+ * the project. The purpose of this class is to give an entry point for predefined or custom implementations. Some
+ * concepts are
  * <ol>
- *     <li>The generic {@code T} limit the implementation to scan for exactly one {@link Annotation}.</li>
- *     <li>The generic scanner requires to to set the package name where the scan should start.</li>
+ *     <li>The generic {@code T} limits the implementation to scan for exactly one {@link Annotation}.</li>
+ *     <li>The generic scanner requires you to set the package name where the scan should start.</li>
  *     <li>The abstract method {@link #scan()} is the only method which should handle the implementation.</li>
  * </ol>
  *
@@ -39,8 +39,8 @@ public abstract class GenericScanner<T extends Annotation> {
     /**
      * Get the required package name where the scanner should start scanning for the {@link #annotationToScan}.
      * <p>
-     * The implementation is responsible that the {@link #scan()} either starts at the packageName and finds classes
-     * annotated with {@code T} recursively or scans only the given packageName.
+     * The implementation is responsible for ensuring that the {@link #scan()} either starts at the packageName and
+     * finds classes annotated with {@code T} recursively or scans only the given packageName.
      */
     @Getter
     private final String packageName;
@@ -59,16 +59,17 @@ public abstract class GenericScanner<T extends Annotation> {
      * There is no restriction how to set the data, but it is recommended to use the return value from {@link #scan()}.
      *
      * @param classes a list of {@link Class classes} that are annotated with {@link #annotationToScan}. An
-     *     {@link IllegalArgumentException} is thrown, when the passed classes contain a class which is not annotated
-     *     with {@link #annotationToScan}. A {@link NullPointerException} is thrown when {@code null} is given as an
-     *     argument.
+     *                {@link IllegalArgumentException} is thrown, when the passed classes contain a class which is not
+     *                annotated with {@link #annotationToScan}. A {@link NullPointerException} is thrown when
+     *                {@code null} is given as an argument.
      * @see #scan()
      */
     protected void setFoundClasses(@NonNull Set<Class<?>> classes) {
         Set<Class<?>> tempFoundClasses = new HashSet<>();
         for (Class<?> clazz : classes) {
             if (!clazz.isAnnotationPresent(this.annotationToScan)) {
-                throw new IllegalArgumentException("The class " + clazz.getSimpleName() + " is not annotated with " + this.annotationToScan);
+                throw new IllegalArgumentException(
+                    "The class " + clazz.getSimpleName() + " is not annotated with " + this.annotationToScan);
             }
             tempFoundClasses.add(clazz);
         }
@@ -78,12 +79,12 @@ public abstract class GenericScanner<T extends Annotation> {
     /**
      * Create a new instance of the scanner.
      *
-     * @param packageName is the string representation of the package name where the scan should start. The package
-     *     name can be used in the {@link #scan()} implementation. A {@link NullPointerException} is thrown when
-     *     {@code null} is given as an argument.
+     * @param packageName is the string representation of the package name where the scan should start. The package name
+     *                    can be used in the {@link #scan()} implementation. A {@link NullPointerException} is thrown
+     *                    when {@code null} is given as an argument.
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    public GenericScanner(@NonNull String packageName) {
+    protected GenericScanner(@NonNull String packageName) {
         this.packageName = packageName;
         this.annotationToScan = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
@@ -95,7 +96,7 @@ public abstract class GenericScanner<T extends Annotation> {
      * {@link #getFoundClasses()} will always return an empty set.
      *
      * @return {@link Set} filled with classes that are annotated with {@link #annotationToScan}. The return should
-     *     never be {@code null}.
+     * never be {@code null}.
      */
     public abstract Set<Class<?>> scan();
 }
