@@ -13,7 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.boot.version>2.7.7</spring.boot.version>
+        <spring.boot.version>3.5.13</spring.boot.version>
     </properties>
 
     <dependencyManagement>
@@ -34,7 +34,7 @@
         </dependency>
         <dependency>
             <groupId>io.github.faltfe</groupId>
-            <artifactId>rulify-spring-boot-starter</artifactId>
+            <artifactId>rulify-spring-boot3-starter</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
