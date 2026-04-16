@@ -169,7 +169,7 @@ Independent on selected implementation there are the following steps required:
    rule or effect is not required.
 2. Get a valid reference to `RulifyRunner` and execute the `run()` method.
 
-### Example implementation for Java SE project
+### Example implementation for Java standalone projects
 
 Import the required dependency. There is no need to import `rulify-api` 
 because it is a transitiv dependency.
@@ -177,7 +177,7 @@ because it is a transitiv dependency.
 ```xml
 <dependency>
     <groupId>de.faltfe.rulify</groupId>
-    <artifactId>rulify-runner-se</artifactId>
+    <artifactId>rulify-runner-standalone</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
@@ -193,22 +193,21 @@ class RuleScanner() {
 }
 ```
 
-### Example for javax and jakarta
+### Example for Jakarta CDI
 
 Import the required dependency. There is no need to import `rulify-api`
-because it is a transitiv dependency.
+because it is a transitive dependency.
 
 ```xml
 <dependency>
     <groupId>de.faltfe.rulify</groupId>
-    <artifactId>rulify-runner-javax</artifactId>
-    <!-- <artifactId>rulify-runner-jakarta</artifactId> -->
+    <artifactId>rulify-runner-jakarta</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
-It is recommended that a `RulifyRunner` instance lives as long as the 
-application is running to prevent scanning multiple time.
+It is recommended that a `RulifyRunner` instance lives as long as the
+application is running to prevent scanning multiple times.
 
 ```java
 @Singleton
