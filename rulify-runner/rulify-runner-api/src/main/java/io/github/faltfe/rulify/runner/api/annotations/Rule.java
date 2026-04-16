@@ -7,8 +7,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * Annotation to mark a class as a rule that should be executed by the
+ * {@link io.github.faltfe.rulify.runner.api.RulifyRunner}. The value specifies the {@link Executable} implementation
+ * that contains the rule logic.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface Rule {
+
     Class<? extends Executable> value();
 }
