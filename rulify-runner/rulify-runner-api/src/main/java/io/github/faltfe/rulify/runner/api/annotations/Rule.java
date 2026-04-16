@@ -16,5 +16,10 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 public @interface Rule {
 
+    /**
+     * Returns the {@link Executable} implementation that contains the rule logic.
+     *
+     * @return the Executable class to execute for this rule.
+     */
     Class<? extends Executable> value();
 }

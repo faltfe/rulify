@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
  * A Generic Runner is an abstract layer for an implementation that uses a {@link GenericScanner} to find classes
  * annotated with the specified annotation.
  *
+ * @param <T> The annotation type that this runner scans for.
  * @author Felix Faltin
  * @see RulifyRunner
  * @see GenericScanner
