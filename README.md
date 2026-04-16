@@ -237,7 +237,7 @@ public class RuleScanner {
 }
 ```
 
-### Example for Spring Boot projects
+### Example for Spring Boot 3 projects
 
 Import the required dependency. There is no need to import `rulify-api`
 because it is a transitive dependency.
@@ -246,7 +246,7 @@ because it is a transitive dependency.
 
 <dependency>
     <groupId>io.github.faltfe</groupId>
-    <artifactId>rulify-spring-boot-starter</artifactId>
+    <artifactId>rulify-spring-boot3-starter</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
