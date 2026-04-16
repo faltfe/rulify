@@ -92,8 +92,8 @@ public abstract class GenericScanner<T extends Annotation> {
     /**
      * Searching in the classpath along the {@link #packageName} for classes annotated with {@link #annotationToScan}.
      * <p>
-     * It is recommended storing the scan result inside {@link #setFoundClasses(Set)} otherwise the
-     * {@link #getFoundClasses()} will always return an empty set.
+     * It is recommended storing the scan result inside {@link #setFoundClasses(Set)} otherwise the foundClasses field
+     * will always remain empty.
      *
      * @return {@link Set} filled with classes that are annotated with {@link #annotationToScan}. The return should
      * never be {@code null}.
