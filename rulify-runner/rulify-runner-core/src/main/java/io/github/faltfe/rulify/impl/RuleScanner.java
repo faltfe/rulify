@@ -1,17 +1,24 @@
 package io.github.faltfe.rulify.impl;
 
-import io.github.faltfe.rulify.runner.api.annotations.Rule;
+import io.github.classgraph.ClassGraph;
+import io.github.classgraph.ScanResult;
 import io.github.faltfe.rulify.runner.api.GenericScanner;
-import org.reflections.Reflections;
-import org.reflections.util.ConfigurationBuilder;
-
+import io.github.faltfe.rulify.runner.api.annotations.Rule;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
-import static org.reflections.scanners.Scanners.SubTypes;
-import static org.reflections.scanners.Scanners.TypesAnnotated;
-
+/**
+ * Implementation of {@link GenericScanner} that uses the ClassGraph library to scan for classes annotated with
+ * {@link Rule} in the specified package.
+ */
 public class RuleScanner extends GenericScanner<Rule> {
+
+    /**
+     * Creates a new RuleScanner for the given package path.
+     *
+     * @param path the package path to scan for rule classes
+     */
     public RuleScanner(String path) {
         super(path);
     }
@@ -22,9 +29,15 @@ public class RuleScanner extends GenericScanner<Rule> {
             return this.getFoundClasses();
         }
 
-        Reflections reflections = new Reflections(new ConfigurationBuilder().forPackages(this.getPackageName())
-                                                                            .setScanners(TypesAnnotated, SubTypes));
-        this.setFoundClasses(reflections.get(TypesAnnotated.with(getAnnotationToScan()).asClass()));
+        try (ScanResult scanResult = new ClassGraph().enableClassInfo()
+                                                     .enableAnnotationInfo()
+                                                     .acceptPackages(this.getPackageName())
+                                                     .scan()) {
+            Set<Class<?>> classes = new HashSet<>(
+                scanResult.getClassesWithAnnotation(getAnnotationToScan()).loadClasses()
+            );
+            this.setFoundClasses(classes);
+        }
         return Collections.unmodifiableSet(this.getFoundClasses());
     }
 }
