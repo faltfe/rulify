@@ -1,18 +1,35 @@
 title: Rulify documentation
-description: A starter template for a Jeykll site using the Just the Docs theme!
+description: Documentation for the Rulify business rules framework and runtime runner.
 theme: just-the-docs
+url: https://faltfe.github.io
+baseurl: /rulify
 
-url: https://just-the-docs.github.io
+nav:
+  - title: Home
+    url: /
+  - title: Installation
+    url: /installation/
+  - title: Getting Started
+    url: /getting-started/
+  - title: Concepts
+    url: /concepts/
+  - title: Runner
+    url: /runner/
+  - title: Examples
+    url: /examples/
+  - title: FAQ
+    url: /faq/
 
 aux_links:
   "Repository":
     - "https://github.com/faltfe/rulify"
-  "Open an issues":
+  "Open an issue":
     - "https://github.com/faltfe/rulify/issues"
 
 aux_links_new_tab: true
-
 heading_anchors: true
+search_enabled: true
+search_placeholder: "Search Rulify docs"
 
 # Footer
 gh_edit_link: true
