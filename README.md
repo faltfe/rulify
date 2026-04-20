@@ -12,15 +12,15 @@ and had to many features or the implementation was not intuitiv for me. That was
 the birth of _rulify_.
 
 _rulify_ itself is a library that provides a framework for implementing
-business rules as code. A rule is an abstract representation of exactly one 
-condition, which is followed by an action. In other words, a rule describes 
+business rules as code. A rule is an abstract representation of exactly one
+condition, which is followed by an action. In other words, a rule describes
 an _if-then_ structure.
 
 The special feature of _rulify_ is that both conditions and actions can be
 created independently of the rule, so that they can be reused several times in
 different rules.
 
-** ‼ The library does not claim to fulfil the criteria of a rule engine, 
+** ‼ The library does not claim to fulfil the criteria of a rule engine,
 nor to replace it. ‼**
 
 ## How _rulify_ works? 🔨
@@ -28,8 +28,9 @@ nor to replace it. ‼**
 When working with Maven import the dependency
 
 ```xml
+
 <dependency>
-    <groupId>de.faltfe.rulify</groupId>
+    <groupId>io.github.faltfe</groupId>
     <artifactId>rulify-api</artifactId>
     <version>1.0.0</version>
 </dependency>
@@ -70,15 +71,21 @@ public class Cat {
     private String name = "Meow 🐱";
     private boolean cute;
 
-    public Cat(boolean isCute) {this.cute = isCute;}
+    public Cat(boolean isCute) {
+        this.cute = isCute;
+    }
 
-    public boolean isCute() {return cute;}
+    public boolean isCute() {
+        return cute;
+    }
 
-    public void purr() {System.out.println("🐈 + ", name);}
+    public void purr() {
+        System.out.println("🐈 + ", name);
+    }
 }
 ```
 
-Now we need your `CatRule` which will evaluate a business rule and execute a 
+Now we need your `CatRule` which will evaluate a business rule and execute a
 defined action.
 
 ```java
@@ -105,6 +112,7 @@ The last part is to execute the `Rule`.
 
 ```java
 public class MyRuleExecutor() {
+
     public static void main(String[] args) {
         Executable rule = new CatRule();
         rule.execute();
@@ -112,8 +120,8 @@ public class MyRuleExecutor() {
 }
 ```
 
-If the data should be manipulated or a side effect is needed replace 
-`Rule<Cat>` with `Effect<Cat>`. The image below shows the different flows 
+If the data should be manipulated or a side effect is needed replace
+`Rule<Cat>` with `Effect<Cat>`. The image below shows the different flows
 between a `Rule` and an `Effect`.
 
 ![rulify-rule-effect-flow](assets/rulify-rule-effect-flow.drawio.png)
@@ -130,7 +138,7 @@ If-Else-Then construct. For simple conditions it is true, but as soon as things
 get more complex, the strengths of rulify come to the fore.
 
 1. A rule is reusable.
-2. There is a separation between the components condition and execution. It 
+2. There is a separation between the components condition and execution. It
    is easy to implement SOLID this way.
 3. The individual components are easier to test.
 
@@ -144,7 +152,7 @@ mechanism for If-Then conditions.
 
 # Rulify runner 🏃‍♂️🏃‍♀️
 
-The _rulify_ runner is an extension build on top of the _rulify_ API. There 
+The _rulify_ runner is an extension build on top of the _rulify_ API. There
 are different implementations based on the target environment:
 
 - Java SE
@@ -162,22 +170,24 @@ this method. Depending on the target system, select the right dependency.
 
 Independent on selected implementation there are the following steps required:
 
-1. Create a custom `Rule` or `Effect` and annotate the class the rule or 
+1. Create a custom `Rule` or `Effect` and annotate the class the rule or
    effect is working on with `@Rule(MyRule.class)`.
 
-   An implementation of the `Executable` interface would also be valid if a 
-   rule or effect is not required.
+    An implementation of the `Executable` interface would also be valid if a
+    rule or effect is not required.
+
 2. Get a valid reference to `RulifyRunner` and execute the `run()` method.
 
-### Example implementation for Java SE project
+### Example implementation for Java standalone projects
 
-Import the required dependency. There is no need to import `rulify-api` 
-because it is a transitiv dependency.
+Import the required dependency. There is no need to import `rulify-api`
+because it is a transitive dependency.
 
 ```xml
+
 <dependency>
-    <groupId>de.faltfe.rulify</groupId>
-    <artifactId>rulify-runner-se</artifactId>
+    <groupId>io.github.faltfe</groupId>
+    <artifactId>rulify-runner-standalone</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
@@ -185,61 +195,64 @@ because it is a transitiv dependency.
 Sample implementation
 
 ```java
-class RuleScanner() {
+public class RuleScanner {
+
     public static void main(String[] args) {
-        RulifyRunner runner = new RuleRunner("de.faltfe.rulify");
+        RulifyRunner runner = new RuleRunner("io.github.faltfe.rulify");
         runner.run();
     }
 }
 ```
 
-### Example for javax and jakarta
+### Example for Jakarta CDI
 
 Import the required dependency. There is no need to import `rulify-api`
-because it is a transitiv dependency.
+because it is a transitive dependency.
 
 ```xml
+
 <dependency>
-    <groupId>de.faltfe.rulify</groupId>
-    <artifactId>rulify-runner-javax</artifactId>
-    <!-- <artifactId>rulify-runner-jakarta</artifactId> -->
+    <groupId>io.github.faltfe</groupId>
+    <artifactId>rulify-runner-jakarta</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
-It is recommended that a `RulifyRunner` instance lives as long as the 
-application is running to prevent scanning multiple time.
+It is recommended that a `RulifyRunner` instance lives as long as the
+application is running to prevent scanning multiple times.
 
 ```java
+
 @Singleton
-@Startup
-class RuleScanner() {
+public class RuleScanner {
+
     @Inject
-    @RulifyConfig(path = "de.faltde.rulify")
+    @RulifyConfig(path = "io.github.faltfe.rulify")
     private RulifyRunner runner;
-    
-    @PostContruct
-    public void run(){
+
+    @PostConstruct
+    public void init() {
         runner.run();
     }
 }
 ```
 
-### Example for Sprint Boot projects
+### Example for Spring Boot 3 projects
 
 Import the required dependency. There is no need to import `rulify-api`
-because it is a transitiv dependency.
+because it is a transitive dependency.
 
 ```xml
+
 <dependency>
-    <groupId>de.faltfe.rulify</groupId>
-    <artifactId>rulify-spring-boot-starter</artifactId>
+    <groupId>io.github.faltfe</groupId>
+    <artifactId>rulify-spring-boot3-starter</artifactId>
     <version>1.0.0</version>
 </dependency>
 ```
 
-The configuration of the scanned packages is done inside the 
-`application.properties` by setting `de.faltfe.rulify.path=de.faltfe.rulify`.
+The configuration of the scanned packages is done inside the
+`application.properties` by setting `io.github.faltfe.rulify.path=io.github.faltfe.rulify`.
 
 ```java
 

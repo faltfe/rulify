@@ -13,7 +13,6 @@
 
     <modules>
         <module>rulify-example-standalone</module>
-        <module>rulify-example-javax</module>
         <module>rulify-example-jakarta</module>
         <module>rulify-example-spring-boot</module>
     </modules>
