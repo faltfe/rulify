@@ -20,7 +20,7 @@ The special feature of _rulify_ is that both conditions and actions can be
 created independently of the rule, so that they can be reused several times in
 different rules.
 
-** ‼ The library does not claim to fulfil the criteria of a rule engine,
+**‼ The library does not claim to fulfil the criteria of a rule engine,
 nor to replace it. ‼**
 
 ## How _rulify_ works? 🔨
@@ -150,7 +150,7 @@ mechanism for If-Then conditions.
 
 ---
 
-# Rulify runner 🏃‍♂️🏃‍♀️
+## Rulify runner 🏃‍♂️🏃‍♀️
 
 The _rulify_ runner is an extension build on top of the _rulify_ API. There
 are different implementations based on the target environment:
@@ -160,7 +160,7 @@ are different implementations based on the target environment:
 - Jakarta (`java.jakarta`)
 - Spring Boot
 
-## How to start with rulify runner?
+### How to start with rulify runner?
 
 _rulify runner_ provides an API with the interface `RulifyRunner` that has the
 method `run()`. Each implementation for a specific platform should implement
@@ -178,7 +178,7 @@ Independent on selected implementation there are the following steps required:
 
 2. Get a valid reference to `RulifyRunner` and execute the `run()` method.
 
-### Example implementation for Java standalone projects
+#### Example implementation for Java standalone projects
 
 Import the required dependency. There is no need to import `rulify-api`
 because it is a transitive dependency.
@@ -204,7 +204,7 @@ public class RuleScanner {
 }
 ```
 
-### Example for Jakarta CDI
+#### Example for Jakarta CDI
 
 Import the required dependency. There is no need to import `rulify-api`
 because it is a transitive dependency.
@@ -237,7 +237,7 @@ public class RuleScanner {
 }
 ```
 
-### Example for Spring Boot 3 projects
+#### Example for Spring Boot 3 projects
 
 Import the required dependency. There is no need to import `rulify-api`
 because it is a transitive dependency.
