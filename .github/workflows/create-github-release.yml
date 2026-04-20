@@ -24,7 +24,7 @@ jobs:
         id: build_changelog
         uses: mikepenz/release-changelog-builder-action@v6
         with:
-          configuration: |
+          configurationJson: |
             {
               "categories": [
                 {
@@ -55,7 +55,7 @@ jobs:
               "ignore_labels": [
                 "ignore"
               ],
-              "template": "# Release ${fromTag} → ${toTag}\n\n${{CHANGELOG}}\n\n---\n\n**Full Changelog**: https://github.com/faltfe/rulify/compare/${fromTag}...${toTag}"
+              "template": "# Release ${fromTag} → ${toTag}\n\n{{CHANGELOG}}\n\n---\n\n**Full Changelog**: https://github.com/faltfe/rulify/compare/${fromTag}...${toTag}"
             }
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
