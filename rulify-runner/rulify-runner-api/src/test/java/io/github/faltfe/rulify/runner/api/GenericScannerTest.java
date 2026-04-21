@@ -2,35 +2,19 @@ package io.github.faltfe.rulify.runner.api;
 
 import io.github.faltfe.rulify.api.Executable;
 import io.github.faltfe.rulify.runner.api.annotations.Rule;
-import lombok.NonNull;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GenericScannerTest {
-
-    static class GenericScannerMockImpl extends GenericScanner<Rule> {
-
-        /**
-         * Create a new instance of the scanner.
-         *
-         * @param packageName is the string representation of the package name where the scan should start. The
-         *         package name can be used in the {@link #scan()} implementation. A {@link NullPointerException} is
-         *         thrown when {@code null} is given as an argument.
-         */
-        public GenericScannerMockImpl(@NonNull String packageName) {
-            super(packageName);
-        }
-
-        @Override
-        public Set<Class<?>> scan() {
-            return null;
-        }
-    }
 
     @Rule(Executable.class)
     static class AnnotatedClass1 {}
@@ -42,22 +26,23 @@ class GenericScannerTest {
     private static final String PATH_TO_SCAN = "junit.test";
 
     @BeforeEach
-    public void init() {
-        this.scanner = new GenericScannerMockImpl(PATH_TO_SCAN);
+    void init() {
+        this.scanner = new GenericScannerImpl(PATH_TO_SCAN);
     }
 
     @Nested
     class SetFoundClasses {
         @Test
         void withAnnotatedClass() {
-            assertDoesNotThrow(() -> scanner.setFoundClasses(new HashSet<>(Arrays.asList(AnnotatedClass1.class, AnnotatedClass2.class))));
+            assertDoesNotThrow(() -> scanner.setFoundClasses(Set.of(AnnotatedClass1.class, AnnotatedClass2.class)));
         }
 
         @Test
         void withNotAnnotatedClass() {
+            Set<Class<?>> classes = Set.of(Object.class, Objects.class);
             assertThrows(
                     IllegalArgumentException.class,
-                    () -> scanner.setFoundClasses(new HashSet<>(Arrays.asList(Object.class, Objects.class)))
+                    () -> scanner.setFoundClasses(classes)
             );
         }
     }
@@ -77,9 +62,9 @@ class GenericScannerTest {
 
         @Test
         void foundClassesSet() {
-            Set<Class<?>> classes = new HashSet<>(Arrays.asList(AnnotatedClass1.class, AnnotatedClass2.class));
+            Set<Class<?>> classes = Set.of(AnnotatedClass1.class, AnnotatedClass2.class);
             scanner.setFoundClasses(classes);
-            assertIterableEquals(classes, scanner.getFoundClasses());
+            assertThat(scanner.getFoundClasses()).containsExactlyInAnyOrderElementsOf(classes);
         }
     }
 }
