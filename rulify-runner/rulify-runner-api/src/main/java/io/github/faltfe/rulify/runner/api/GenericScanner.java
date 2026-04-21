@@ -54,6 +54,19 @@ public abstract class GenericScanner<T extends Annotation> {
     private Set<Class<?>> foundClasses = Collections.emptySet();
 
     /**
+     * Create a new instance of the scanner.
+     *
+     * @param packageName is the string representation of the package name where the scan should start. The package name
+     *                    can be used in the {@link #scan()} implementation. A {@link NullPointerException} is thrown
+     *                    when {@code null} is given as an argument.
+     */
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    protected GenericScanner(@NonNull String packageName) {
+        this.packageName = packageName;
+        this.annotationToScan = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+    }
+
+    /**
      * Set classes which are contain the annotation {@link #annotationToScan}.
      * <p>
      * There is no restriction how to set the data, but it is recommended to use the return value from {@link #scan()}.
@@ -74,19 +87,6 @@ public abstract class GenericScanner<T extends Annotation> {
             tempFoundClasses.add(clazz);
         }
         this.foundClasses = Collections.unmodifiableSet(tempFoundClasses);
-    }
-
-    /**
-     * Create a new instance of the scanner.
-     *
-     * @param packageName is the string representation of the package name where the scan should start. The package name
-     *                    can be used in the {@link #scan()} implementation. A {@link NullPointerException} is thrown
-     *                    when {@code null} is given as an argument.
-     */
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    protected GenericScanner(@NonNull String packageName) {
-        this.packageName = packageName;
-        this.annotationToScan = (Class) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     /**
