@@ -1,0 +1,71 @@
+# labeler.yml
+
+# Tests
+testing:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "test/**"
+
+# Documentation
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "docs/**"
+          - "*.md"
+          - "assets/**"
+
+# CI/CD
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - ".github/workflows/**"
+          - ".github/actions/**"
+
+# Dependencies
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "pom.xml"
+
+# Examples
+examples:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "rulify-example/**"
+
+# Examples
+api-change:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "rulify-api/src/main/**"
+          - "rulify-runner/rulify-runner-api/src/main/**"
+
+# Bug fixes (heuristic via branch name or PR title)
+bug:
+  - head-branch:
+      - "^fix"
+      - "^bug"
+  - title:
+      - "fix"
+      - "bug"
+
+java:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "**/src/main/**.java"
+
+# Features
+feature:
+  - head-branch:
+      - "^feat"
+      - "^feature"
+  - title:
+      - "feat"
+      - "feature"
+
+# Breaking changes
+breaking-change:
+  - title:
+      - "BREAKING"
+      - "breaking change"
+
