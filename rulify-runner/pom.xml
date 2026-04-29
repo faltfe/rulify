@@ -12,6 +12,10 @@
     <artifactId>rulify-runner</artifactId>
     <packaging>pom</packaging>
 
+    <name>Rulify Runner</name>
+    <description>Modules for running rules defined with Rulify.</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <modules>
         <module>rulify-runner-api</module>
         <module>rulify-runner-core</module>

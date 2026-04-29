@@ -11,6 +11,10 @@
 
     <artifactId>rulify-runner-standalone</artifactId>
 
+    <name>Rulify Runner Standalone</name>
+    <description>Rulify Runner for standalone applications</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <dependencies>
         <dependency>
             <groupId>io.github.faltfe</groupId>

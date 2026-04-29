@@ -11,6 +11,10 @@
 
     <artifactId>rulify-api</artifactId>
 
+    <name>Rulify API</name>
+    <description>Rulify API for defining and evaluating rules</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
