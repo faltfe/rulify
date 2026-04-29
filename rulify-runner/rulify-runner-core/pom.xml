@@ -11,6 +11,10 @@
 
     <artifactId>rulify-runner-core</artifactId>
 
+    <name>Rulify Runner Core</name>
+    <description>Rulify Runner core provides a generic rule scanner</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <dependencies>
         <dependency>
             <groupId>io.github.faltfe</groupId>

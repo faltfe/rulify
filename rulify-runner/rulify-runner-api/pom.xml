@@ -11,6 +11,10 @@
 
     <artifactId>rulify-runner-api</artifactId>
 
+    <name>Rulify Runner API</name>
+    <description>Rulify Runner API for defining a rulify runner</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <dependencies>
         <dependency>
             <groupId>io.github.faltfe</groupId>

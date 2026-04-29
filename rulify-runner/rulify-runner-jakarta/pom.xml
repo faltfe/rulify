@@ -11,6 +11,10 @@
 
     <artifactId>rulify-runner-jakarta</artifactId>
 
+    <name>Rulify Runner Jakarta</name>
+    <description>Rulify Runner for Jakarta EE</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <dependencies>
         <dependency>
             <groupId>io.github.faltfe</groupId>

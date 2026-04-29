@@ -11,6 +11,10 @@
 
     <artifactId>rulify-spring-boot3-starter</artifactId>
 
+    <name>Rulify Spring Boot 3 Starter</name>
+    <description>Rulify Spring Boot 3 Starter</description>
+    <url>https://github.com/faltfe/rulify</url>
+
     <properties>
         <spring.boot.version>3.5.13</spring.boot.version>
     </properties>
