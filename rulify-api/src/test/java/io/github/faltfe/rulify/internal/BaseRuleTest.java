@@ -5,14 +5,19 @@ import io.github.faltfe.rulify.api.Condition;
 import io.github.faltfe.rulify.api.Rule;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class BaseRuleTest {
 
-    private final Rule<?> rule = mock(Rule.class, Mockito.CALLS_REAL_METHODS);
+    @SuppressWarnings("unchecked")
+    private final Rule<Object> rule = (Rule<Object>) spy(Rule.class);
 
     @Nested
     class GetObject {
@@ -62,7 +67,7 @@ class BaseRuleTest {
 
         @Test
         void withNull() {
-            assertThrows(NullPointerException.class, () -> rule.thenRun(null));
+            assertThrows(NullPointerException.class, () -> rule.thenRun(Object::getClass));
         }
     }
 

@@ -18,7 +18,7 @@ class ModifierTest {
         String phrase = "tap test";
         Modifier<String> modifier = String::toUpperCase;
         modifier.tap((in, out) -> {
-            assertEquals(in, phrase);
+            assertEquals(phrase, in);
             assertEquals(out, phrase.toUpperCase());
         }).apply("tap test");
     }

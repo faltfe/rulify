@@ -4,6 +4,7 @@ import io.github.faltfe.rulify.api.Action;
 import io.github.faltfe.rulify.api.Condition;
 import io.github.faltfe.rulify.api.Executable;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 public abstract class BaseRule<T> implements Executable {
 
@@ -12,9 +13,8 @@ public abstract class BaseRule<T> implements Executable {
     /**
      * Provide data for all other operations.
      * <p>
-     * The provided data can basically be any object that satisfies the return
-     * type. There is no need to worry about multiple calls of this method
-     * because the value will be cached internally.
+     * The provided data can basically be any object that satisfies the return type. There is no need to worry about
+     * multiple calls of this method because the value will be cached internally.
      * <p>
      * The data is used in {@link #condition()} and {@link #action()}.
      *
@@ -25,9 +25,8 @@ public abstract class BaseRule<T> implements Executable {
     /**
      * Provide any {@link Condition} that is checked against the provided {@link #data()}.
      * <p>
-     * A condition can validate any logic which evaluate to {@code true} or {@code false}.
-     * The only limitation is that the validated object <strong>must not</strong>
-     * be a primitive type.
+     * A condition can validate any logic which evaluate to {@code true} or {@code false}. The only limitation is that
+     * the validated object <strong>must not</strong> be a primitive type.
      * <p>
      * For example a condition may validate if an integer is odd or even. If the integer is even the condition is
      * fulfilled.
@@ -46,9 +45,9 @@ public abstract class BaseRule<T> implements Executable {
     /**
      * Provide any {@link Action} that performs logic against the provided {@link #data()}.
      * <p>
-     * The action can run any logic against the provided data. Multiple actions
-     * can be joined. To each joined action the <strong>original</strong> data
-     * is passed.
+     * The action can run any logic against the provided data. Multiple actions can be joined. To each joined action
+     * the
+     * <strong>original</strong> data is passed.
      *
      * @return a reference to the {@link Action} implementation or the implementation itself
      * @see #thenRun(Action)
@@ -56,10 +55,25 @@ public abstract class BaseRule<T> implements Executable {
     public abstract Action<T> action();
 
     /**
+     * Executes this rule or effect using the provided data supplier.
+     * <p>
+     * The supplier is only invoked for this execution and its value is cached for the rest of the rule/effect
+     * lifecycle. This allows data to be supplied from the outside once for both
+     * {@link io.github.faltfe.rulify.api.Rule} and {@link io.github.faltfe.rulify.api.Effect} implementations.
+     *
+     * @param dataSupplier provider for the data used by {@link #condition()} and {@link #action()}
+     * @throws NullPointerException if {@code dataSupplier} or its returned value is null
+     */
+    public void execute(Supplier<T> dataSupplier) {
+        this.data = Objects.requireNonNull(dataSupplier.get(), "supplied data must not be null");
+        this.execute();
+    }
+
+    /**
      * Get the data one which all operations are performed.
      * <p>
-     * The returned data is provided by the implementation of {@link #data()}.
-     * To prevent multiple calls of {@link #data()} caching is enabled.
+     * The returned data is provided by the implementation of {@link #data()}. To prevent multiple calls of
+     * {@link #data()} caching is enabled.
      *
      * @return the passed {@link #data()}
      */

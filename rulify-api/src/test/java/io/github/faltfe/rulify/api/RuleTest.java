@@ -1,13 +1,19 @@
 package io.github.faltfe.rulify.api;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class RuleTest {
 
-    private final Rule<?> rule = mock(Rule.class, Mockito.CALLS_REAL_METHODS);
+    @SuppressWarnings("unchecked")
+    private final Rule<Object> rule = (Rule<Object>) spy(Rule.class);
 
     @SuppressWarnings(value = {"rawtypes", "unchecked"})
     @Test
@@ -36,4 +42,19 @@ class RuleTest {
         verify(rule, never()).action();
     }
 
+    @SuppressWarnings(value = {"rawtypes", "unchecked"})
+    @Test
+    void testExecuteWithSupplier() {
+        Condition condition = mock(Condition.class);
+        when(condition.test(any())).thenReturn(true);
+        when(rule.condition()).thenReturn(condition);
+
+        Action action = mock(Action.class);
+        when(rule.action()).thenReturn(action);
+
+        rule.execute(Object::new);
+
+        verify(rule, times(1)).condition();
+        verify(rule, times(1)).action();
+    }
 }

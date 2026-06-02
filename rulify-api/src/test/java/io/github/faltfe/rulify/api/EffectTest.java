@@ -3,15 +3,21 @@ package io.github.faltfe.rulify.api;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 class EffectTest {
 
-    private final Effect<?> effect = mock(Effect.class, Mockito.CALLS_REAL_METHODS);
+    @SuppressWarnings("unchecked")
+    private final Effect<Object> effect = (Effect<Object>) spy(Effect.class);
 
     @Nested
     class Manipulate {
@@ -89,7 +95,25 @@ class EffectTest {
             when(effect.action()).thenReturn(null);
             assertThrows(NullPointerException.class, effect::execute);
         }
+
+        @SuppressWarnings(value = {"rawtypes", "unchecked"})
+        @Test
+        void withSupplierData() {
+            Condition condition = mock(Condition.class);
+            when(condition.test(any())).thenReturn(true);
+            when(effect.condition()).thenReturn(condition);
+
+            Modifier modifier = mock(Modifier.class);
+            when(modifier.apply(any())).thenReturn(true);
+            when(effect.effect()).thenReturn(modifier);
+
+            Action action = mock(Action.class);
+            when(effect.action()).thenReturn(action);
+
+            effect.execute(Object::new);
+
+            verify(effect, times(1)).action();
+            verify(effect, times(1)).manipulate(modifier);
+        }
     }
-
-
 }
