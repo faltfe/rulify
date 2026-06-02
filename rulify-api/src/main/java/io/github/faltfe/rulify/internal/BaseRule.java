@@ -4,11 +4,12 @@ import io.github.faltfe.rulify.api.Action;
 import io.github.faltfe.rulify.api.Condition;
 import io.github.faltfe.rulify.api.Executable;
 import java.util.Objects;
+import org.jspecify.annotations.Nullable;
 import java.util.function.Supplier;
 
 public abstract class BaseRule<T> implements Executable {
 
-    private T data;
+    private @Nullable T data;
 
     /**
      * Provide data for all other operations.
