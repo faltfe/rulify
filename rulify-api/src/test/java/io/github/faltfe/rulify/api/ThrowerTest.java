@@ -35,7 +35,19 @@ class ThrowerTest {
         when(condition.test(any())).thenReturn(false);
         when(rule.condition()).thenReturn(condition);
 
-        assertDoesNotThrow(rule::execute);
+        assertDoesNotThrow(() -> rule.execute());
+        verify(rule, times(1)).condition();
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @Test
+    void executeWithSupplierThrowsWhenConditionMatches() {
+        Condition condition = mock(Condition.class);
+        when(condition.test(any())).thenReturn(true);
+        when(rule.condition()).thenReturn(condition);
+        when(rule.exception(any())).thenReturn(new IllegalArgumentException("supplier match"));
+
+        assertThrows(IllegalArgumentException.class, () -> rule.execute(Object::new));
         verify(rule, times(1)).condition();
     }
 }
