@@ -1,8 +1,5 @@
 codecov:
   branch: main
-  precision: 2
-  round: down
-  layout: "reach,diff,flags,tree"
   require_ci_to_pass: true
 
 coverage:
@@ -20,11 +17,13 @@ coverage:
         target: 80
         threshold: 1
         base: auto
-    changes:
-      default:
-        target: 80
-        threshold: 1
-        base: auto
+
+github_checks:
+  annotations: true
+
+parsers:
+  jacoco:
+    partials_as_hits: true
 
 comment:
   layout: "reach,diff,flags,tree"
@@ -32,13 +31,6 @@ comment:
   require_changes: false
   require_base: false
   require_head: true
-
-github:
-  checks:
-    annotations: true
-
-pr_comments: true
-pr_context: true
 
 fixes:
   - ":::"
