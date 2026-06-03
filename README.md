@@ -1,7 +1,7 @@
 # rulify
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![codecov](https://codecov.io/gh/faltfe/rulify/branch/develop/graph/badge.svg?token=8KSNJFNNFU)](https://codecov.io/gh/faltfe/rulify)
+[![codecov](https://codecov.io/gh/faltfe/rulify/branch/main/graph/badge.svg?token=8KSNJFNNFU)](https://codecov.io/gh/faltfe/rulify)
 [![Build, run tests and create coverage](https://github.com/faltfe/rulify/actions/workflows/build-test-coverage.yml/badge.svg)](https://github.com/faltfe/rulify/actions/workflows/build-test-coverage.yml)
 
 ## What is rulify? 🤔
